@@ -1,1 +1,0 @@
-alter table users add email varchar(30) not null;

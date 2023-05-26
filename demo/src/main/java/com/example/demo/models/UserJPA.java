@@ -15,18 +15,14 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
 public class UserJPA {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
-    private String name;
-    private String lastName;
-    private String phone;
     private String email;
-
+    private String passwd;
 
     public UserJPA(UserRecord user) {
-        this.name = user.name();
-        this.lastName = user.lastName();
-        this.phone = user.phone();
         this.email = user.email();
+        this.passwd = user.passwd();
     }
 }
