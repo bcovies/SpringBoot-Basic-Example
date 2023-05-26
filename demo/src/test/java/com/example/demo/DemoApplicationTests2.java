@@ -12,14 +12,17 @@ import org.springframework.http.ResponseEntity;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class DemoApplicationTests2  {
+public class DemoApplicationTests2 {
     @Autowired
     TestRestTemplate restTemplate;
 
     @Test
-    void shouldReturnACashCardWhenDataIsSaved() {
-        ResponseEntity<String> response = restTemplate.getForEntity("/user/99", String.class);
+    void shouldReturnANameWhenDataIsSaved() {
+        ResponseEntity<String> response = restTemplate.getForEntity("/user/Bruno", String.class);
 
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
+        DocumentContext documentContext = JsonPath.parse(response.getBody());
+        String name = documentContext.read("$.name");
+        assertThat(name).isEqualTo("Bruno");
     }
 }

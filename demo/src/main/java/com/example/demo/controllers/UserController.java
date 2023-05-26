@@ -6,12 +6,15 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.model.User;
+
 @RestController
 @RequestMapping("/user")
 public class UserController {
-    
-   @GetMapping("/{requestedId}")
-   public ResponseEntity<String> findById() {
-         return ResponseEntity.ok("{}");
-   }
+
+      @GetMapping("/{requestedName}")
+      public ResponseEntity<User> findById() {
+            User user = new User("Bruno");
+            return ResponseEntity.ok(user);
+      }
 }
