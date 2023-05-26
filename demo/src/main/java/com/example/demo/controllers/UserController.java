@@ -13,8 +13,12 @@ import com.example.demo.model.User;
 public class UserController {
 
       @GetMapping("/{requestedName}")
-      public ResponseEntity<User> findById() {
-            User user = new User("Bruno");
-            return ResponseEntity.ok(user);
+      public ResponseEntity<User> findById(@PathVariable String requestedName) {
+            if (requestedName.equals("Bruno")) {
+                  User user = new User("Bruno");
+                  return ResponseEntity.ok(user);
+            } else {
+                  return ResponseEntity.notFound().build();
+            }
       }
 }

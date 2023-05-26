@@ -25,4 +25,12 @@ public class DemoApplicationTests2 {
         String name = documentContext.read("$.name");
         assertThat(name).isEqualTo("Bruno");
     }
+
+    @Test
+    void shouldNotReturnANameWithAnUnknownId() {
+        ResponseEntity<String> response = restTemplate.getForEntity("/user/Zina", String.class);
+
+        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);
+        assertThat(response.getBody()).isBlank();
+    }
 }
