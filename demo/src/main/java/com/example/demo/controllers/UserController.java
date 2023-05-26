@@ -12,10 +12,10 @@ import com.example.demo.model.User;
 @RequestMapping("/user")
 public class UserController {
 
-      @GetMapping("/{requestedName}")
-      public ResponseEntity<User> findById(@PathVariable String requestedName) {
-            if (requestedName.equals("Bruno")) {
-                  User user = new User("Bruno");
+      @GetMapping("/{requestedId}")
+      public ResponseEntity<User> findById(@PathVariable String requestedId) {
+            if (requestedId.equals(1L)) {
+                  User user = new User(1L, "Bruno");
                   return ResponseEntity.ok(user);
             } else {
                   return ResponseEntity.notFound().build();

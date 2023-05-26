@@ -15,12 +15,17 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class DemoApplicationTests {
 
     @Autowired
-    private JacksonTester<User> json; //User Record
+    private JacksonTester<User> json; // User Record
 
     @Test
     public void userSerializationTest() throws IOException {
-        User user = new User("Bruno");
+        User user = new User(1L, "Bruno");
         assertThat(json.write(user)).isStrictlyEqualToJson("expected.json");
+        // id
+        assertThat(json.write(user)).hasJsonPathNumberValue("@.id");
+        assertThat(json.write(user)).extractingJsonPathNumberValue("@.id")
+                .isEqualTo(1);
+        // string
         assertThat(json.write(user)).hasJsonPathStringValue("@.name");
         assertThat(json.write(user)).extractingJsonPathStringValue("@.name")
                 .isEqualTo("Bruno");

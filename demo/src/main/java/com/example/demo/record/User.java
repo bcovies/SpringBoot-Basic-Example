@@ -1,5 +1,7 @@
 package com.example.demo.record;
 
-public record User(String name) {
+import org.springframework.data.annotation.Id;
+
+public record User(@Id Long id,String name) {
     
 }
